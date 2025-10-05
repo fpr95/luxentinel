@@ -1,9 +1,9 @@
 package com.duocvinavalpo.LuxSentinel.business.impl;
 
+import com.duocvinavalpo.LuxSentinel.business.ModelService;
 import com.duocvinavalpo.LuxSentinel.model.Model;
 import com.duocvinavalpo.LuxSentinel.model.User;
 import com.duocvinavalpo.LuxSentinel.model.repository.ModelRepository;
-import com.duocvinavalpo.LuxSentinel.model.repository.ModelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +12,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Service
+
 @RequiredArgsConstructor
+@Service
 public class ModelServiceImpl implements ModelService {
 
-    private ModelRepository modelRepository;
+    private final ModelRepository modelRepository;
 
     @Override
     public Model createModel(Model model) {

@@ -2,18 +2,19 @@ package com.duocvinavalpo.LuxSentinel.web.controller;
 
 import com.duocvinavalpo.LuxSentinel.business.ModelService;
 import com.duocvinavalpo.LuxSentinel.model.Model;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@RestController
-@AllArgsConstructor
 @RequestMapping("/api/models")
+@RestController
+@RequiredArgsConstructor
 public class ModelController {
 
+    @Autowired
     private final ModelService modelService;
 
     @PostMapping
