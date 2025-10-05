@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class ModelServiceImpl implements ModelService {
 
-    private final ModelRepository modelRepository;
+    private ModelRepository modelRepository;
 
     @Override
     public Model createModel(Model model) {

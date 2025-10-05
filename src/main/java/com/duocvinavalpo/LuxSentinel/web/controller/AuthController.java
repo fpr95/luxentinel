@@ -1,30 +1,28 @@
 package com.duocvinavalpo.LuxSentinel.web.controller;
 
-import com.duocvinavalpo.LuxSentinel.business.UserService;
-import com.duocvinavalpo.LuxSentinel.model.User;
 import com.duocvinavalpo.LuxSentinel.web.AuthRequest;
 import com.duocvinavalpo.LuxSentinel.web.AuthResponse;
+import com.duocvinavalpo.LuxSentinel.web.authservice.AuthService;
 import com.duocvinavalpo.LuxSentinel.web.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthController {
-
-    private final UserService userService;
+    private final AuthService authService;
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody AuthRequest request) {
-        // Aquí deberías integrar JWT o Spring Security
-        return userService.authenticate(request);
+    public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
+        AuthResponse resp = authService.authenticate(request);
+        return ResponseEntity.ok(resp);
     }
 
-    //TODO: The return type could be as well boolean. Check business logic
     @PostMapping("/register")
-    public User register(@RequestBody UserDTO userDTO) {
-        User user = new User();
-        return userService.createUser(user);
+    public ResponseEntity<UserDTO> register(@RequestBody UserDTO userDTO) {
+        UserDTO created = authService.register(userDTO);
+        return ResponseEntity.ok(created);
     }
 }

@@ -2,6 +2,7 @@ package com.duocvinavalpo.LuxSentinel.web.controller;
 
 import com.duocvinavalpo.LuxSentinel.business.ModelService;
 import com.duocvinavalpo.LuxSentinel.model.Model;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
+@AllArgsConstructor
 @RequestMapping("/api/models")
-@RequiredArgsConstructor
 public class ModelController {
 
     private final ModelService modelService;
