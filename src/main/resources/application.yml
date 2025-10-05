@@ -1,0 +1,103 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+  tomcat:
+    max-swallow-size: -1 # TODO: Change this config since is not recommended for production environments
+
+spring:
+  main:
+    allow-circular-references: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/luxentinel_v1 #NOMBRE_BD
+    username: root #PLACEHOLDER
+    password: 852456msql #PLACEHOLDER TODO: MOVE THIS VALUE TO A ENVIRONMENT VARIABLE OR KEYSTORE >>> IMPORTANT: SECURITY BREACH <<<
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 4000KB
+  #    max-request-size: 4100KB
+
+  jpa:
+    database: mysql
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true
+
+  mvc:
+    encoding:
+      charset: UTF-8
+    static-path-pattern: /static/**
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  template:
+    cache: false
+
+  thymeleaf:
+    encoding: UTF-8
+    enabled: true
+    cache: false
+
+  messages:
+    basename: verificationMessages, validationMessages
+    fallback-to-system-locale: true
+    encoding: UTF-8
+
+
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587 # port 587 is for encrypted sessions, 25 is for plain/text
+#    username: lautaro.pipe@gmail.com #HERE GOES THE GMAIL USERNAME
+#    password: paay qfjt agmg afoz #HERE GOES THE APPLICATION PASSWORD FOR THE GMAIL TODO: MOVE THIS TO AN ENVIRONMENT VARIABLE >>> SECURITY BREACH <<<
+#    transport:
+#      protocol: smtp
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true # Some SMTP servers require a TLS connection
+
+
+#Remove this config unless quartz it's used
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+
+logging:
+  level:
+    root: INFO
+    org:
+      hibernate:
+        SQL: DEBUG
+        type: TRACE
+      springframework:
+        web: DEBUG
+        security:
+          web:
+            FilterChainProxy: DEBUG
+      mapstruct: DEBUG
+    com:
+      digiteo: DEBUG
+
+com:
+  digiteo:
+    secure:
+      token:
+        expSeconds: 21600
+
+site:
+  base:
+    url:
+      http: http://localhost:8080
+      https: http://localhost:8080 # TODO: This field should be changed(removed?) when https is enabled

@@ -39,4 +39,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Prediction> predictions = new ArrayList<>();
+
+    public String getPassword() {
+        return this.passwordHash;
+    }
+    public void setPassword(String password) {
+        this.passwordHash = password;
+    }
 }
