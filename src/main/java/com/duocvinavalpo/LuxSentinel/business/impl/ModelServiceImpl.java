@@ -1,9 +1,9 @@
 package com.duocvinavalpo.LuxSentinel.business.impl;
 
 import com.duocvinavalpo.LuxSentinel.business.ModelService;
-import com.duocvinavalpo.LuxSentinel.model.Model;
-import com.duocvinavalpo.LuxSentinel.model.User;
-import com.duocvinavalpo.LuxSentinel.model.repository.ModelRepository;
+import com.duocvinavalpo.LuxSentinel.entity.Model;
+import com.duocvinavalpo.LuxSentinel.entity.User;
+import com.duocvinavalpo.LuxSentinel.entity.repository.ModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

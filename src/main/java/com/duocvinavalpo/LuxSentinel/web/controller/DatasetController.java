@@ -1,7 +1,7 @@
 package com.duocvinavalpo.LuxSentinel.web.controller;
 
 import com.duocvinavalpo.LuxSentinel.business.DatasetService;
-import com.duocvinavalpo.LuxSentinel.model.Dataset;
+import com.duocvinavalpo.LuxSentinel.entity.Dataset;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

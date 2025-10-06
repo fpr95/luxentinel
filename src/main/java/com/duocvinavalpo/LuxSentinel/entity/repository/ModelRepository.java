@@ -1,7 +1,7 @@
-package com.duocvinavalpo.LuxSentinel.model.repository;
+package com.duocvinavalpo.LuxSentinel.entity.repository;
 
-import com.duocvinavalpo.LuxSentinel.model.Model;
-import com.duocvinavalpo.LuxSentinel.model.User;
+import com.duocvinavalpo.LuxSentinel.entity.Model;
+import com.duocvinavalpo.LuxSentinel.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.duocvinavalpo.LuxSentinel.business;
 
-import com.duocvinavalpo.LuxSentinel.model.Dataset;
-import com.duocvinavalpo.LuxSentinel.model.Model;
-import com.duocvinavalpo.LuxSentinel.model.Prediction;
-import com.duocvinavalpo.LuxSentinel.model.User;
+import com.duocvinavalpo.LuxSentinel.entity.Dataset;
+import com.duocvinavalpo.LuxSentinel.entity.Model;
+import com.duocvinavalpo.LuxSentinel.entity.Prediction;
+import com.duocvinavalpo.LuxSentinel.entity.User;
 
 import java.util.List;
 import java.util.Optional;

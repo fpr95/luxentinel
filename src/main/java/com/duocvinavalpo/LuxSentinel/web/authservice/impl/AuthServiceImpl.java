@@ -1,7 +1,7 @@
 package com.duocvinavalpo.LuxSentinel.web.authservice.impl;
 
-import com.duocvinavalpo.LuxSentinel.model.User;
-import com.duocvinavalpo.LuxSentinel.model.repository.UserRepository;
+import com.duocvinavalpo.LuxSentinel.entity.User;
+import com.duocvinavalpo.LuxSentinel.entity.repository.UserRepository;
 import com.duocvinavalpo.LuxSentinel.security.JwtService;
 import com.duocvinavalpo.LuxSentinel.web.AuthRequest;
 import com.duocvinavalpo.LuxSentinel.web.AuthResponse;

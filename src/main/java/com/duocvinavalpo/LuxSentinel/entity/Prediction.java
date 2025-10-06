@@ -1,4 +1,4 @@
-package com.duocvinavalpo.LuxSentinel.model;
+package com.duocvinavalpo.LuxSentinel.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

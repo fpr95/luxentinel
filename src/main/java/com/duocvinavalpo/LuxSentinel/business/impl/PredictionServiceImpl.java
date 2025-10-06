@@ -1,11 +1,11 @@
 package com.duocvinavalpo.LuxSentinel.business.impl;
 
 import com.duocvinavalpo.LuxSentinel.business.PredictionService;
-import com.duocvinavalpo.LuxSentinel.model.Dataset;
-import com.duocvinavalpo.LuxSentinel.model.Model;
-import com.duocvinavalpo.LuxSentinel.model.Prediction;
-import com.duocvinavalpo.LuxSentinel.model.User;
-import com.duocvinavalpo.LuxSentinel.model.repository.PredictionRepository;
+import com.duocvinavalpo.LuxSentinel.entity.Dataset;
+import com.duocvinavalpo.LuxSentinel.entity.Model;
+import com.duocvinavalpo.LuxSentinel.entity.Prediction;
+import com.duocvinavalpo.LuxSentinel.entity.User;
+import com.duocvinavalpo.LuxSentinel.entity.repository.PredictionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package com.duocvinavalpo.LuxSentinel.web.controller;
 
 import com.duocvinavalpo.LuxSentinel.business.UserService;
-import com.duocvinavalpo.LuxSentinel.model.User;
+import com.duocvinavalpo.LuxSentinel.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

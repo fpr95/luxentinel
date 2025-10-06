@@ -1,7 +1,7 @@
 package com.duocvinavalpo.LuxSentinel.web.controller;
 
 import com.duocvinavalpo.LuxSentinel.business.PredictionService;
-import com.duocvinavalpo.LuxSentinel.model.Prediction;
+import com.duocvinavalpo.LuxSentinel.entity.Prediction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

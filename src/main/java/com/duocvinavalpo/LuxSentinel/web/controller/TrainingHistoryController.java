@@ -1,7 +1,7 @@
 package com.duocvinavalpo.LuxSentinel.web.controller;
 
 import com.duocvinavalpo.LuxSentinel.business.TrainingHistoryService;
-import com.duocvinavalpo.LuxSentinel.model.TrainingHistory;
+import com.duocvinavalpo.LuxSentinel.entity.TrainingHistory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

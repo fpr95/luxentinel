@@ -1,9 +1,9 @@
 package com.duocvinavalpo.LuxSentinel.business.impl;
 
 import com.duocvinavalpo.LuxSentinel.business.DatasetService;
-import com.duocvinavalpo.LuxSentinel.model.Dataset;
-import com.duocvinavalpo.LuxSentinel.model.User;
-import com.duocvinavalpo.LuxSentinel.model.repository.DatasetRepository;
+import com.duocvinavalpo.LuxSentinel.entity.Dataset;
+import com.duocvinavalpo.LuxSentinel.entity.User;
+import com.duocvinavalpo.LuxSentinel.entity.repository.DatasetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

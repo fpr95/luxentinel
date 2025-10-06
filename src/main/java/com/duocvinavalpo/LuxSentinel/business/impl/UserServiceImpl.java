@@ -1,14 +1,10 @@
 package com.duocvinavalpo.LuxSentinel.business.impl;
 
 import com.duocvinavalpo.LuxSentinel.business.UserService;
-import com.duocvinavalpo.LuxSentinel.model.User;
-import com.duocvinavalpo.LuxSentinel.model.repository.UserRepository;
-import com.duocvinavalpo.LuxSentinel.security.JwtService;
-import com.duocvinavalpo.LuxSentinel.web.AuthRequest;
-import com.duocvinavalpo.LuxSentinel.web.AuthResponse;
+import com.duocvinavalpo.LuxSentinel.entity.User;
+import com.duocvinavalpo.LuxSentinel.entity.repository.UserRepository;
 import com.duocvinavalpo.LuxSentinel.web.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.*;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

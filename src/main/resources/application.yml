@@ -8,17 +8,26 @@ server:
 spring:
   main:
     allow-circular-references: true
+
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3307/luxentinel_v1 #NOMBRE_BD
+    url: jdbc:mysql://localhost:${BBDD_PORT}/${BBDD_NAME}
     username: root #PLACEHOLDER
-    password: 852456msql #PLACEHOLDER TODO: MOVE THIS VALUE TO A ENVIRONMENT VARIABLE OR KEYSTORE >>> IMPORTANT: SECURITY BREACH <<<
+    password: ${BBDD_PASSWD}
+    # Connection pool configuration (HikariCP)
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
 
   servlet:
     multipart:
       enabled: true
-      max-file-size: 4000KB
-  #    max-request-size: 4100KB
+      max-file-size: 500MB
+      max-request-size: 500MB
+      file-size-threshold: 2KB
 
   jpa:
     database: mysql
@@ -52,12 +61,23 @@ spring:
     fallback-to-system-locale: true
     encoding: UTF-8
 
+  task:
+    execution:
+      pool:
+        core-size: 10
+        max-size: 50
+        queue-capacity: 100
+
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterAccess=600s
 
 #  mail:
 #    host: smtp.gmail.com
 #    port: 587 # port 587 is for encrypted sessions, 25 is for plain/text
-#    username: lautaro.pipe@gmail.com #HERE GOES THE GMAIL USERNAME
-#    password: paay qfjt agmg afoz #HERE GOES THE APPLICATION PASSWORD FOR THE GMAIL TODO: MOVE THIS TO AN ENVIRONMENT VARIABLE >>> SECURITY BREACH <<<
+#    username: #HERE GOES THE GMAIL USERNAME
+#    password: #HERE GOES THE APPLICATION PASSWORD FOR THE GMAIL
 #    transport:
 #      protocol: smtp
 #    properties:
@@ -69,10 +89,10 @@ spring:
 
 
 #Remove this config unless quartz it's used
-  quartz:
-    job-store-type: jdbc
-    jdbc:
-      initialize-schema: always
+#  quartz:
+#    job-store-type: jdbc
+#    jdbc:
+#      initialize-schema: always
 
 logging:
   level:
@@ -88,7 +108,38 @@ logging:
             FilterChainProxy: DEBUG
       mapstruct: DEBUG
     com:
-      digiteo: DEBUG
+      duocvinavalpo: DEBUG
+  file:
+    name: logs/luxentinel-api.log
+    max-size: 10MB
+    max-history: 30
+
+# ===================================================================
+# ML Model Storage Configuration
+# =================================================================
+ml:
+  models:
+    storage:
+      # Path where model files (.pkl, .joblib, .sav) are stored TODO: SET VALUE TO VARIABLE
+      path: ${MODEL_STORAGE_PATH:/app/ml-models}
+    # Maximum model file size in MB
+    max-size-mb: 500
+    # Allowed file extensions for model uploads
+    allowed-extensions: .pkl,.joblib,.sav,.pickle
+  # ===================================================================
+  # Python ML Service Configuration
+  python:
+    api:
+      # URL of Python ML inference service (Flask/FastAPI) TODO: SET VALUE TO VARIABLE
+      url: ${PYTHON_ML_API_URL:http://localhost:5000}
+      # Enable/disable Python API (false = use direct process execution) TODO: SET VALUE TO VARIABLE
+      enabled: ${PYTHON_ML_API_ENABLED:true}
+    script:
+      # Path to Python inference script (for process execution mode) TODO: SET VALUE TO VARIABLE
+      path: ${PYTHON_SCRIPT_PATH:/app/ml/inference.py}
+    # Python executable path TODO: SET VALUE TO VARIABLE
+    executable: ${PYTHON_EXECUTABLE:python3}
+
 
 com:
   digiteo:
@@ -101,3 +152,72 @@ site:
     url:
       http: http://localhost:8080
       https: http://localhost:8080 # TODO: This field should be changed(removed?) when https is enabled
+
+# ===================================================================
+# Azure Blob Storage Configuration (for production model storage)
+# ===================================================================
+azure:
+  storage:
+    #TODO: SET VALUES TO VARIABLES
+    enabled: ${AZURE_STORAGE_ENABLED:false}
+    account-name: ${AZURE_STORAGE_ACCOUNT:}
+    account-key: ${AZURE_STORAGE_KEY:}
+    container-name: ${AZURE_STORAGE_CONTAINER:ml-models}
+    connection-string: ${AZURE_STORAGE_CONNECTION_STRING:}
+
+# ===================================================================
+# Security Configuration
+# ===================================================================
+jwt:
+  # TODO: Change value in production
+  secret: ${JWT_SECRET:luxentinel-secret-key-change-in-production}
+  expiration: 86400000
+
+nasa:
+  exoplanet:
+    api:
+      url: https://exoplanetarchive.ipac.caltech.edu/cgi-bin/nstedAPI/nph-nstedAPI
+      timeout: 30000
+
+management:
+  endpoint:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+    health:
+      show-details: when-authorized
+  health:
+    db:
+      enabled: true
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+# ===================================================================
+# CORS Configuration
+# ==================================================================
+cors:
+  allowed-origins: ${CORS_ORIGINS:http://localhost:3000,http://localhost:4200}
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: *
+  allow-credentials: true
+
+# ===================================================================
+# Retry Configuration (for external service calls)
+# ===================================================================
+retry:
+  max-attempts: 3
+  backoff-delay: 1000
+
+# ===================================================================
+# Rate Limiting Configuration
+# ===================================================================
+rate-limit:
+  enabled: true
+  capacity: 100
+  refill-tokens: 10
+  refill-duration-seconds: 1

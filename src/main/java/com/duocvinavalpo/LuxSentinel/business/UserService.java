@@ -1,6 +1,6 @@
 package com.duocvinavalpo.LuxSentinel.business;
 
-import com.duocvinavalpo.LuxSentinel.model.User;
+import com.duocvinavalpo.LuxSentinel.entity.User;
 import com.duocvinavalpo.LuxSentinel.web.dto.UserDTO;
 
 import java.util.List;
